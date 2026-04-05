@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.btn {
+    padding: 8px 16px;
+    background: #e0e0e0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #d0d0d0;
+}
+
+/* Каталог - общий */
+.catalog {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Режим плитки */
+.catalog--tile {
+    gap: 10px;
+}
+
+.catalog--tile .product {
+    background: white;
+    border: 2px solid #333;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 3 товара в ряд */
+@media (min-width: 1024px) {
+    .catalog--tile .product {
+        width: calc(33.333% - 7px);
+    }
+}
+
+/* 2 товара в ряд */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .catalog--tile .product {
+        width: calc(50% - 5px);
+    }
+}
+
+/* 1 товар */
+@media (max-width: 767px) {
+    .catalog--tile .product {
+        width: 100%;
+    }
+}
+
+/* Режим списка */
+.catalog--list {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.catalog--list .product {
+    background: white;
+    border: 2px solid #333;
+    padding: 15px;
+    width: 100%;
+}
+
+.product h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.product p {
+    color: #666;
+    font-size: 14px;
+}
