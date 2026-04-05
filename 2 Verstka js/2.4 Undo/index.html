@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undo для формы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Undo для формы</h2>
+        
+        <div class="toolbar">
+            <button class="btn-undo" id="undoButton" disabled>↶ Отменить</button>
+        </div>
+
+        <form id="mainForm">
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" name="fullname">
+                <div class="error" id="fullnameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email">
+                <div class="error" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Город</label>
+                <select name="city">
+                    <option value="msk">Москва</option>
+                    <option value="spb">Санкт-Петербург</option>
+                    <option value="kazan">Казань</option>
+                </select>
+                <div class="error" id="cityError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Пол</label>
+                <div class="options">
+                    <label><input type="radio" name="gender" value="male"> Мужской</label>
+                    <label><input type="radio" name="gender" value="female"> Женский</label>
+                </div>
+                <div class="error" id="genderError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Интересы</label>
+                <div class="options">
+                    <label><input type="checkbox" name="interests" value="sports"> Спорт</label>
+                    <label><input type="checkbox" name="interests" value="music"> Музыка</label>
+                    <label><input type="checkbox" name="interests" value="books"> Книги</label>
+                </div>
+                <div class="error" id="interestsError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>О себе</label>
+                <textarea name="about" rows="3"></textarea>
+                <div class="error" id="aboutError"></div>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

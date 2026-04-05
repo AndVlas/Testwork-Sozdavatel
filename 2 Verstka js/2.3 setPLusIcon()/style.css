@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.menu {
+    list-style: none;
+    padding-left: 0;
+    max-width: 300px;
+}
+
+.menu li {
+    margin: 5px 0;
+}
+
+.menu ul {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.menu ul.hidden {
+    display: none;
+}
+
+.menu a {
+    text-decoration: none;
+    color: blue;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+.menu li.has-children > a {
+    color: #666;
+}
+
+.menu li.has-children > a:hover {
+    text-decoration: none;
+}
+
+.menu li:not(.has-children) > a {
+    color: #0066cc;
+}
+
+.menu li:not(.has-children) > a:hover {
+    color: #004499;
+}
