@@ -7,7 +7,8 @@ use \Bitrix\Main\EventManager;
 
 
 if (Loader::includeModule('sale')) {
-
+    
+    // Регистрируем обработчик на событие изменения статуса заказа
     EventManager::getInstance()->addEventHandler(
         'sale',
         'OnSaleStatusOrder',
@@ -25,14 +26,20 @@ class BonusHandler
 
     public static function onSaleStatusOrderHandler($orderId, $status)
     {
-        $targetStatus = 'F';
-
+	self::writeLog("Событие вызвано. Заказ ID: {$orderId}, Статус: {$status}");
+	
+        $targetStatus = 'F'; 
+        
         if ($status !== $targetStatus) {
+	    self::writeLog("Статус {$status} не равен целевому {$targetStatus}. Выход.");
             return;
         }
 
+	self::writeLog("Статус совпал. Продолжаем обработку");
+
         $order = Order::load($orderId);
         if (!$order) {
+	    self::writeLog("Ошибка: Не удалось загрузить заказ {$orderId}");
             return;
         }
 
@@ -55,7 +62,7 @@ class BonusHandler
         $currency = $order->getCurrency();
 
         $account = \CSaleUserAccount::GetByUserID($userId, $currency);
-
+        
         if (!$account) {
             $accountId = \CSaleUserAccount::Add([
                 'USER_ID' => $userId,
@@ -76,5 +83,22 @@ class BonusHandler
             $order->setField('COMMENTS', 'Бонусы зачислены');
             $order->save();
         }
+
+	self::writeLog("Обработка заказа {$orderId} завершена. Сумма товаров: {$itemsTotalPrice}");
+    }
+
+    //Запись логов
+    private static function writeLog($message)
+    {
+        $logFile = $_SERVER['DOCUMENT_ROOT'] . '/upload/logs/bonus_debug.log';
+        $dir = dirname($logFile);
+        
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+        
+        $date = date('Y-m-d H:i:s');
+        file_put_contents($logFile, "[{$date}] {$message}\n", FILE_APPEND);
     }
 }
+?>
