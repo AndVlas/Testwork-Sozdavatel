@@ -8,7 +8,6 @@ use \Bitrix\Main\EventManager;
 
 if (Loader::includeModule('sale')) {
 
-    // Регистрируем обработчик на событие изменения статуса заказа
     EventManager::getInstance()->addEventHandler(
         'sale',
         'OnSaleStatusOrder',
@@ -58,7 +57,6 @@ class BonusHandler
         $account = \CSaleUserAccount::GetByUserID($userId, $currency);
 
         if (!$account) {
-            // Если счета нет, создаем его с нулевым балансом
             $accountId = \CSaleUserAccount::Add([
                 'USER_ID' => $userId,
                 'CURRENCY' => $currency,
